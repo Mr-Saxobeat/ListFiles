@@ -42,10 +42,10 @@ namespace ListFiles
 
     public partial class MainWindow : Window
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+        //public MainWindow()
+        //{
+        //    InitializeComponent();
+        //}
 
         List<string> listAllFilesInDir(string dir)
         {
@@ -102,9 +102,6 @@ namespace ListFiles
             if (folderDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 List<string> individualFiles = listDuplicatingFiles(folderDialog.SelectedPath);
-
-                
-                
                 StringBuilder csvContent = new StringBuilder();
                 string csvPath = folderDialog.SelectedPath + "\\Arquivos Listados.csv";
 
@@ -112,16 +109,14 @@ namespace ListFiles
                 {
                     string onlyFileName;
                     onlyFileName = singleFilePath.Substring(singleFilePath.LastIndexOf(@"\") + 1);
-                
+
                     csvContent.AppendLine(onlyFileName);
 
                     filesListBox.Items.Add(onlyFileName);
                 }
 
-                File.AppendAllText(csvPath, csvContent);
-                
-                
-
+                File.AppendAllText(csvPath, csvContent.ToString());
+                this.Close();
             }
         }
     }
