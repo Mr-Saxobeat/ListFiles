@@ -21,7 +21,7 @@ namespace ListFiles
     /// </summary>
     /// 
 
-    class File
+    class File2
     {
 
         private string path;
@@ -34,7 +34,7 @@ namespace ListFiles
             }
         }
 
-        public File(string filePath)
+        public File2(string filePath)
         {
             this.path = filePath;
         }
@@ -65,10 +65,10 @@ namespace ListFiles
         {
             List<string> listToReturn = new List<string>();
             listToReturn = listAllFilesInDir(dir);
-            List<File> allFiles = new List<File>();
+            List<File2> allFiles = new List<File2>();
             foreach (string singleFile in listToReturn)
             {
-                File newFile = new File(singleFile);
+                File2 newFile = new File2(singleFile);
                 allFiles.Add(newFile);
             }
 
@@ -88,7 +88,7 @@ namespace ListFiles
 
             listToReturn.Clear();
 
-            foreach (File singleFile in allFiles)
+            foreach (File2 singleFile in allFiles)
             {
                 listToReturn.Add(singleFile.filePath);
             }
@@ -106,7 +106,7 @@ namespace ListFiles
                 
                 
                 StringBuilder csvContent = new StringBuilder();
-                string csvPath = folderDialog.SelectedPath;
+                string csvPath = folderDialog.SelectedPath + "\\Arquivos Listados.csv";
 
                 foreach (string singleFilePath in individualFiles)
                 {
@@ -118,6 +118,7 @@ namespace ListFiles
                     filesListBox.Items.Add(onlyFileName);
                 }
 
+                File.AppendAllText(csvPath, csvContent);
                 
                 
 
