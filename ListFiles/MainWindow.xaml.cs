@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
+using System.Xml.Linq;
 
 namespace ListFiles
 {
@@ -27,7 +28,7 @@ namespace ListFiles
 
         public string filePath
         {
-            get 
+            get
             {
                 return this.path;
             }
@@ -102,12 +103,24 @@ namespace ListFiles
             {
                 List<string> individualFiles = listDuplicatingFiles(folderDialog.SelectedPath);
 
+                
+                
+                StringBuilder csvContent = new StringBuilder();
+                string csvPath = folderDialog.SelectedPath;
+
                 foreach (string singleFilePath in individualFiles)
                 {
                     string onlyFileName;
                     onlyFileName = singleFilePath.Substring(singleFilePath.LastIndexOf(@"\") + 1);
+                
+                    csvContent.AppendLine(onlyFileName);
+
                     filesListBox.Items.Add(onlyFileName);
                 }
+
+                
+                
+
             }
         }
     }
